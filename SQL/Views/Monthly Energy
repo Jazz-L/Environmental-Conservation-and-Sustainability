@@ -1,0 +1,16 @@
+CREATE OR ALTER VIEW eng.vw_Energy_ByRegion_Monthly AS
+WITH E AS (
+  SELECT
+      Region,
+      DATEFROMPARTS(YEAR(UsageDate), MONTH(UsageDate), 1) AS UsageMonth,
+      kWh
+  FROM eng.EnergyUsage
+)
+SELECT
+    Region,
+    UsageMonth,
+    CONVERT(char(7), UsageMonth, 120) AS UsageMonthYYYYMM,
+    SUM(kWh) AS TotalKWh
+FROM E
+GROUP BY Region, UsageMonth;
+GO
