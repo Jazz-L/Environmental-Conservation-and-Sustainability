@@ -1,0 +1,26 @@
+CREATE OR ALTER VIEW eng.vw_AQI_ByRegion_Monthly AS
+WITH M AS (
+  SELECT
+      T1.SiteID,
+      CAST(T1.[Timestamp] AS date) AS ObsDate,
+      DATEFROMPARTS(YEAR(T1.[Timestamp]), MONTH(T1.[Timestamp]), 1) AS ObservationMonth,
+      CAST(T1.AQI AS decimal(10,2)) AS AQI_dec
+  FROM eng.AirQuality T1
+  WHERE T1.[Timestamp] IS NOT NULL
+)
+SELECT
+    L.Region,
+    M.ObservationMonth,
+    CONVERT(char(7), M.ObservationMonth, 120) AS ObservationMonthYYYYMM,
+    AVG(M.AQI_dec) AS AvgAQI,
+    CASE
+        WHEN AVG(M.AQI_dec) <=  50 THEN 'Good'
+        WHEN AVG(M.AQI_dec) <= 100 THEN 'Moderate'
+        WHEN AVG(M.AQI_dec) <= 150 THEN 'Unhealthy' -- or 'Unhealthy for Sensitive Groups'
+        WHEN AVG(M.AQI_dec) <= 200 THEN 'Very Unhealthy'
+        ELSE 'Hazardous'
+    END AS AQICategory
+FROM M
+JOIN eng.Locations L ON M.SiteID = L.SiteID
+GROUP BY L.Region, M.ObservationMonth;
+GO
