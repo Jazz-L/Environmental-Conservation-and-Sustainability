@@ -1,0 +1,18 @@
+/****** Object:  Table [eng].[Locations]    Script Date: 8/12/2025 12:33:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [eng].[Locations](
+	[SiteID] [int] NOT NULL,
+	[SiteName] [nvarchar](200) NULL,
+	[Region] [nvarchar](100) NOT NULL,
+	[Latitude] [decimal](9, 6) NULL,
+	[Longitude] [decimal](9, 6) NULL,
+	[CreatedAt] [datetime2](0) NOT NULL,
+ CONSTRAINT [PK_Locations] PRIMARY KEY CLUSTERED 
+(
+	[SiteID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
