@@ -1,0 +1,28 @@
+/* =========================================================================
+   eng.usp_GetTopPollutedSites
+   - Returns top-N highest average AQI sites
+   ========================================================================= */
+CREATE OR ALTER PROCEDURE eng.usp_GetTopPollutedSites
+    @TopN     INT  = 5,
+    @FromDate DATE = NULL,   -- inclusive
+    @ToDate   DATE = NULL    -- inclusive
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @FromTs DATETIME2(0) = CASE WHEN @FromDate IS NULL THEN NULL ELSE CAST(@FromDate AS DATETIME2(0)) END;
+    DECLARE @ToTsEx DATETIME2(0) = CASE WHEN @ToDate   IS NULL THEN NULL ELSE DATEADD(DAY, 1, CAST(@ToDate AS DATETIME2(0))) END;
+
+    SELECT TOP (@TopN)
+        T2.SiteName,
+        T2.Region,
+        AVG(CAST(T1.AQI AS DECIMAL(10,2))) AS AvgAQI
+    FROM eng.AirQuality T1
+    JOIN eng.Locations  T2 ON T1.SiteID = T2.SiteID
+    WHERE T1.AQI IS NOT NULL
+      AND (@FromTs IS NULL OR T1.[Timestamp] >= @FromTs)
+      AND (@ToTsEx IS NULL OR T1.[Timestamp] <  @ToTsEx)   -- half-open end, keeps SARGABLE
+    GROUP BY T2.SiteName, T2.Region
+    ORDER BY AvgAQI DESC;
+END
+GO
