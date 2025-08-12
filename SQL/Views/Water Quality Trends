@@ -1,0 +1,10 @@
+CREATE OR ALTER VIEW eng.vw_WaterQuality_Trends AS
+SELECT
+    W.SiteID,
+    L.Region,
+    W.ObservationDate,
+    W.pH,
+    W.ContaminantPPB
+FROM eng.WaterQuality W
+JOIN eng.Locations  L ON W.SiteID = L.SiteID;
+GO
