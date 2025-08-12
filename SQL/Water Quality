@@ -1,0 +1,18 @@
+/****** Object:  Table [eng].[WaterQuality]    Script Date: 8/12/2025 12:33:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [eng].[WaterQuality](
+	[WaterID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SiteID] [int] NOT NULL,
+	[ObservationDate] [date] NOT NULL,
+	[pH] [decimal](4, 2) NULL,
+	[ContaminantPPB] [decimal](12, 4) NULL,
+	[SourceFile] [nvarchar](260) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[WaterID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
