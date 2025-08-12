@@ -1,0 +1,27 @@
+CREATE OR ALTER VIEW eng.vw_AQI_Daily_BySite AS
+WITH D AS (
+  SELECT
+      T1.SiteID,
+      CAST(T1.[Timestamp] AS date) AS ObservationDate,
+      CAST(T1.AQI AS decimal(10,2))   AS AQI_dec,
+      CAST(T1.PM2_5 AS decimal(10,2)) AS PM25_dec
+  FROM eng.AirQuality T1
+  WHERE T1.[Timestamp] IS NOT NULL AND T1.AQI IS NOT NULL
+)
+SELECT
+    SiteID,
+    ObservationDate,
+    AVG(AQI_dec)               AS AvgAQI,
+    MIN(CAST(AQI_dec AS int))  AS MinAQI,
+    MAX(CAST(AQI_dec AS int))  AS MaxAQI,
+    AVG(PM25_dec)              AS AvgPM25,
+    CASE
+        WHEN AVG(AQI_dec) <=  50 THEN 'Good'
+        WHEN AVG(AQI_dec) <= 100 THEN 'Moderate'
+        WHEN AVG(AQI_dec) <= 150 THEN 'Unhealthy' -- or 'Unhealthy for Sensitive Groups'
+        WHEN AVG(AQI_dec) <= 200 THEN 'Very Unhealthy'
+        ELSE 'Hazardous'
+    END AS AQICategory
+FROM D
+GROUP BY SiteID, ObservationDate;
+GO
