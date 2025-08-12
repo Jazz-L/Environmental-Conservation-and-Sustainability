@@ -1,0 +1,18 @@
+/****** Object:  Table [eng].[AirQuality]    Script Date: 8/12/2025 12:33:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [eng].[AirQuality](
+	[AQID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SiteID] [int] NOT NULL,
+	[Timestamp] [datetime2](0) NOT NULL,
+	[AQI] [int] NULL,
+	[PM2_5] [decimal](9, 2) NULL,
+	[SourceFile] [nvarchar](260) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[AQID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
