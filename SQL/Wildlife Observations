@@ -1,0 +1,18 @@
+/****** Object:  Table [eng].[WildlifeObservations]    Script Date: 8/12/2025 12:33:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [eng].[WildlifeObservations](
+	[WildlifeID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SiteID] [int] NULL,
+	[Species] [nvarchar](150) NOT NULL,
+	[ObservationDate] [date] NOT NULL,
+	[Count] [int] NOT NULL,
+	[SourceFile] [nvarchar](260) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[WildlifeID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
