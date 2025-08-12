@@ -1,0 +1,21 @@
+/****** Object:  Table [eng].[EnergyUsage]    Script Date: 8/12/2025 12:33:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [eng].[EnergyUsage](
+	[EnergyID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SiteID] [int] NOT NULL,
+	[Date] [date] NOT NULL,
+	[kWh] [decimal](18, 2) NOT NULL,
+	[PeakHourUsage] [decimal](18, 2) NULL,
+	[Region] [nvarchar](100) NOT NULL,
+	[UsageDate] [date] NOT NULL,
+	[UsageMonthYYYYMM] [nvarchar](7) NULL,
+	[SourceFile] [nvarchar](260) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[EnergyID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
