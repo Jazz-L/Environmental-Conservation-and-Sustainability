@@ -1,0 +1,16 @@
+CREATE OR ALTER VIEW eng.vw_Wildlife_MonthlyTrends AS
+WITH W AS (
+  SELECT
+      Species,
+      DATEFROMPARTS(YEAR(ObservationDate), MONTH(ObservationDate), 1) AS ObservationMonth,
+      [Count]
+  FROM eng.WildlifeObservations
+)
+SELECT
+    Species,
+    ObservationMonth,
+    CONVERT(char(7), ObservationMonth, 120) AS ObservationMonthYYYYMM,
+    SUM([Count]) AS TotalSightings
+FROM W
+GROUP BY Species, ObservationMonth;
+GO
