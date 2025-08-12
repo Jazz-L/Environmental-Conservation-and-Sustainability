@@ -1,0 +1,27 @@
+/* =========================================================================
+   eng.usp_WildlifeMonthlyTrends
+   - Monthly totals by species
+   - Computes month once
+   ========================================================================= */
+CREATE OR ALTER PROCEDURE eng.usp_WildlifeMonthlyTrends
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    WITH W AS (
+        SELECT
+            T1.Species,
+            DATEFROMPARTS(YEAR(T1.ObservationDate), MONTH(T1.ObservationDate), 1) AS ObservationMonth,
+            T1.[Count]
+        FROM eng.WildlifeObservations T1
+    )
+    SELECT
+        Species,
+        ObservationMonth,
+        CONVERT(char(7), ObservationMonth, 120) AS ObservationMonthYYYYMM,
+        SUM([Count]) AS TotalSightings
+    FROM W
+    GROUP BY Species, ObservationMonth
+    ORDER BY Species, ObservationMonth;
+END
+GO
