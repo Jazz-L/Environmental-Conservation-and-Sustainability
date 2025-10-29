@@ -1,120 +1,135 @@
-# Environmental-Conservation-and-Sustainability
-# Introduction 
-This Azure DevOps plan outlines the project management, development, and deployment processes for the Environmental Conservation and Sustainability Dashboard. It includes setting up Azure Boards for task management, Azure Pipelines for CI/CD, and Azure Artifacts for package management. Each step is integrated with the corresponding exam topics used to study for the Microsoft Certified: Azure Data Engineer Associate exam.
+metadata:
+  title: "🌍 Environmental Conservation and Sustainability Dashboard"
+  description: >
+    Azure Synapse, SQL, Power BI, and PowerApps integration project showcasing 
+    an end-to-end sustainability analytics solution aligned with Azure Data Engineer 
+    certification concepts.
+  author: "Jazz L."
+  role: "Data Engineer | Azure | Power Platform | SQL | Power BI"
+  email: "example@email.com"  # optional placeholder
+  repo_url: "https://github.com/Jazz-L/Environmental-Conservation-and-Sustainability"
+  created: "2025-10-28"
+  version: "1.0.0"
+  license: "MIT"  # or "Restricted - No external modifications"
+  visibility: "public"
+  tags:
+    - azure-synapse
+    - azure-data-engineer
+    - power-bi
+    - sql
+    - powerapps
+    - azure-devops
+    - sustainability
+    - data-engineering
+    - portfolio-project
 
-### Getting Started
+sections:
 
-Welcome to the Environmental Conservation and Sustainability Dashboard project! This guide will help you get your code up and running on your own system.
+  - name: "Introduction"
+    content: >
+      This project demonstrates an end-to-end Azure data engineering workflow 
+      focused on sustainability analytics. It integrates Azure Synapse Pipelines, 
+      SQL Server, Power BI, and PowerApps, all managed through Azure DevOps for 
+      CI/CD and task management. Each component aligns with key objectives from 
+      the Microsoft Certified: Azure Data Engineer Associate exam — serving as both 
+      a hands-on learning exercise and a real-world demonstration of data architecture, 
+      transformation, and reporting in the Microsoft ecosystem.
 
-#### Installation Process
+  - name: "Project Structure"
+    code_block: |
+      Environmental-Conservation-and-Sustainability/
+      │
+      ├── 📁 sql/                     # SQL scripts for schema, tables, views, and stored procedures
+      ├── 📁 synapse-pipelines/       # Azure Synapse pipeline JSON definitions
+      ├── 📁 powerbi/                 # Power BI .pbix report files
+      ├── 📁 powerapps/               # PowerApps export packages
+      ├── 📁 automate/                # Optional Power Automate flows (if applicable)
+      ├── 📁 diagrams/                # Architecture and data flow diagrams
+      ├── 📄 README.md                # Project overview and setup guide
+      └── 📄 LICENSE (optional)       # License information (if applied)
 
-1. **Clone the Repository:**
-   ```sh
-   git clone https://github.com/Jazz-L/Environmental-Conservation-and-Sustainability.git
-   cd Environmental-Conservation-and-Sustainability
-   ```
+  - name: "Getting Started"
+    steps:
+      - step: "Clone the Repository"
+        code_block: |
+          git clone https://github.com/Jazz-L/Environmental-Conservation-and-Sustainability.git
+          cd Environmental-Conservation-and-Sustainability
 
-2. **Set Up Environment:**
-   - Ensure you have the necessary software installed:
-     - **Azure DevOps**
-     - **SQL Server**
-     - **SQL (Azure SQL DB)**
-     - **Azure Synapse Pipelines**
-     - **Power BI Desktop**
-     - **PowerApps**
-   
+      - step: "Set Up Your Environment"
+        tools:
+          - Azure DevOps – for CI/CD pipelines, boards, and artifacts
+          - Azure Synapse Analytics – for ETL workflows
+          - SQL Server / Azure SQL DB – for structured data storage
+          - Power BI Desktop – for building and testing dashboards
+          - PowerApps – for creating interactive apps
+          - SQL Server Management Studio (SSMS)
+          - Azure Data Studio
 
-3. **Install Dependencies:**
-   - Install SQL Server Management Studio (SSMS) for database management.
-   - Install Azure Data Studio for Synapse Pipeline management.
+      - step: "Database Setup"
+        description: >
+          Run SQL scripts in /sql to create all necessary objects — schema, tables, views, 
+          and stored procedures. Alternatively, restore the provided database backup if available.
 
-4. **Database Setup:**
-   - Restore the provided database backup or run the SQL scripts in the `sql` directory to set up the database schema, tables, views, and stored procedures.
+      - step: "Configure Synapse Pipelines"
+        description: >
+          Import pipeline definitions from /synapse-pipelines into your Azure Synapse workspace. 
+          Update linked services, datasets, and credentials as needed.
 
-5. **Configure Azure Synapse Pipelines:**
-   - Import the pipeline definitions from the `synapse-pipelines` directory into your Azure Synapse workspace.
-   - Configure data source connections and set up necessary permissions.
+      - step: "Power BI Reports"
+        description: >
+          Open .pbix files in Power BI Desktop, configure SQL connections, and publish to Power BI Service.
 
-6. **Power BI Reports:**
-   - Open the Power BI report files (`.pbix`) in Power BI Desktop.
-   - Configure the data source connections to point to your SQL database.
-   - Publish the reports to Power BI Service.
+      - step: "PowerApps Setup"
+        description: >
+          Import the PowerApps package from /powerapps. Connect it to your SQL data source and 
+          publish it to your PowerApps environment.
 
-7. **PowerApps Setup:**
-   - Import the PowerApps package from the `powerapps` directory.
-   - Configure the app connections to your SQL database.
-   - Publish the app to your PowerApps environment.
+  - name: "Software Dependencies"
+    table:
+      - Tool: "SQL Server"
+        Purpose: "Database storage, transformations, and queries"
+      - Tool: "Azure Synapse Analytics"
+        Purpose: "Data ingestion, orchestration, and transformations"
+      - Tool: "Power BI Desktop"
+        Purpose: "Visualization and reporting"
+      - Tool: "PowerApps"
+        Purpose: "Front-end app interface"
+      - Tool: "Azure DevOps"
+        Purpose: "CI/CD automation, version control, and task tracking"
 
-#### Software Dependencies
+  - name: "Build & Test"
+    subsections:
+      - title: "Build Process"
+        steps:
+          - "Execute SQL scripts to build database structures."
+          - "Import Synapse pipeline definitions and validate connections."
+          - "Refresh Power BI reports to confirm proper data integration."
+          - "Load PowerApps and confirm functionality with SQL data."
+      - title: "Test Coverage"
+        items:
+          - "Unit Tests: Validate stored procedures and SQL transformations."
+          - "Integration Tests: Confirm full data flow (Synapse → SQL → Power BI → PowerApps)."
+          - "User Acceptance Tests (UAT): Validate business logic with sample data."
 
-- **SQL Server:** Required for database storage and management.
-- **Azure Synapse Analytics:** Required for data ingestion and transformation.
-- **Power BI Desktop:** Required for creating and editing Power BI reports.
-- **PowerApps:** Required for building and deploying the PowerApps.
-- **Azure DevOps:** Required for CI/CD pipelines, boards, and artifact management.
+  - name: "Documentation & References"
+    links:
+      - "SQL Server Documentation: https://learn.microsoft.com/sql/sql-server/"
+      - "Azure Synapse Analytics: https://learn.microsoft.com/azure/synapse-analytics/"
+      - "Power BI Documentation: https://learn.microsoft.com/power-bi/"
+      - "PowerApps Documentation: https://learn.microsoft.com/powerapps/"
+      - "Azure DevOps Documentation: https://learn.microsoft.com/azure/devops/"
 
-#### Latest Releases
+  - name: "Project Status"
+    content: >
+      This is an independent portfolio project created for learning and demonstration purposes. 
+      External edits, pull requests, and feature contributions are not accepted.  
+      You’re welcome to fork or reference this repository for educational use — 
+      please credit the original author.
 
-Keep an eye on the repository for the latest releases and updates. Make sure to pull the latest changes regularly to stay up-to-date with improvements and bug fixes.
-
-#### API References
-
-Refer to the following documentation for detailed API references and usage:
-
-- **SQL Server:** [SQL Server Documentation](https://docs.microsoft.com/en-us/sql/sql-server/)
-- **Azure Synapse Analytics:** [Azure Synapse Documentation](https://docs.microsoft.com/en-us/azure/synapse-analytics/)
-- **Power BI:** [Power BI Documentation](https://docs.microsoft.com/en-us/power-bi/)
-- **PowerApps:** [PowerApps Documentation](https://docs.microsoft.com/en-us/powerapps/)
-- **Azure DevOps:** [Azure DevOps Documentation](https://docs.microsoft.com/en-us/azure/devops/)
-
-### Build and Test
-
-#### Building the Code
-
-1. **SQL Database:**
-   - Execute the SQL scripts in the `sql` directory to build the database schema, tables, views, and stored procedures.
-   - Verify the database setup using SQL Server Management Studio (SSMS).
-
-2. **Azure Synapse Pipelines:**
-   - Import the pipeline definitions from the `Pipelines` directory.
-   - Configure and test data ingestion and transformation pipelines.
-
-3. **Power BI Reports:**
-   - Open the Power BI report files in Power BI Desktop.
-   - Refresh data connections and verify the reports.
-
-4. **PowerApps:**
-   - Import the PowerApps package.
-   - Test the app functionality and data connections.
-
-#### Running Tests
-
-1. **Unit Tests:**
-   - Write and execute unit tests for stored procedures and data transformation logic.
-   - Use tools like SQL Test for testing SQL code.
-
-2. **Integration Tests:**
-   - Test the end-to-end data flow from ingestion in Synapse Pipelines to visualization in Power BI.
-   - Verify the PowerApps functionality with the integrated SQL database.
-
-3. **User Acceptance Tests (UAT):**
-   - Conduct UAT with sample data to ensure the solution meets business requirements.
-   - Gather feedback and make necessary adjustments.
-
-### Contribute
-
-We welcome contributions from the community to improve this project. Here's how you can contribute:
-
-1. **Report Issues:**
-   - Use the GitHub issue tracker to report bugs or suggest enhancements.
-   - Provide detailed information to help us understand and replicate the issue.
-
-2. **Code Reviews:**
-   - Participate in code reviews to help maintain code quality.
-   - Provide constructive feedback and suggestions for improvement.
-
-3. **Documentation:**
-   - Improve project documentation to help new users get started.
-   - Update the README and other documentation files as needed.
-
-Thank you for contributing to the Environmental Conservation and Sustainability Dashboard project! Together, we can make a positive impact on environmental conservation efforts through technology.
+  - name: "Author"
+    details:
+      name: "Jazz L."
+      title: "Data Engineer | Azure | Power Platform | SQL | Power BI"
+      links:
+        - "LinkedIn: #"
+        - "GitHub: https://github.com/Jazz-L"
